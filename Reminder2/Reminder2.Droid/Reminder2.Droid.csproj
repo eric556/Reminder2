@@ -133,6 +133,7 @@
   <ItemGroup>
     <Compile Include="Data\DatabaseConnection_Android.cs" />
     <Compile Include="MainActivity.cs" />
+    <Compile Include="Notifications\AlarmReciver.cs" />
     <Compile Include="Notifications\Notification_Android.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

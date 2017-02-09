@@ -33,7 +33,7 @@ namespace Reminder2.Pages
             {
                 if (e.SelectedItem != null)
                 {
-                    DisplayAlert(((ReminderDataStructure)e.SelectedItem).Title, ((ReminderDataStructure)e.SelectedItem).Description, "OK");
+                    DisplayAlert(((ReminderDataStructure)e.SelectedItem).Title, ((ReminderDataStructure)e.SelectedItem).Description + "\n" + ((ReminderDataStructure)e.SelectedItem).Time, "OK");
                 }
                 ((ListView)sender).SelectedItem = null;
             };

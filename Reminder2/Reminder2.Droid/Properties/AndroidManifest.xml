@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:installLocation="auto" android:versionCode="1" android:versionName="Alpha">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:installLocation="auto" android:versionCode="1" android:versionName="Alpha" package="Reminder2.Droid">
 	<uses-sdk android:minSdkVersion="15" />
-	<application android:label="Reminder2.Droid" android:icon="@drawable/icon"></application>
+	<uses-permission android:name="android.permission.VIBRATE" />
+	<application android:label="Reminder" android:icon="@drawable/icon"></application>
 </manifest>

@@ -7,6 +7,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using Xamarin.Forms;
 using Reminder2.Data;
+using System.Globalization;
 
 namespace Reminder2.Pages
 {
@@ -24,8 +25,14 @@ namespace Reminder2.Pages
             VerticalOptions = LayoutOptions.FillAndExpand
         };
 
-        public ReminderCreationPage(string title, string description)
+        DatePicker date = new DatePicker();
+
+        TimePicker time = new TimePicker();
+
+
+        public ReminderCreationPage(string title, string description, DateTime dTime)
         {
+            
             StackLayout mainLayout = new StackLayout
             {
                 Orientation = StackOrientation.Vertical
@@ -61,14 +68,19 @@ namespace Reminder2.Pages
 
             mainLayout.Children.Add(titleEntry);
             mainLayout.Children.Add(descriptonLayout);
+            mainLayout.Children.Add(date);
+            mainLayout.Children.Add(time);
             mainLayout.Children.Add(addButton);
 
             titleEntry.Text = title;
             descriptionEntry.Text = description;
+            date.Date = dTime.Date;
+            time.Time = dTime.TimeOfDay;
+
             Content = mainLayout;
         }
 
-        public ReminderCreationPage():this("","")
+        public ReminderCreationPage():this("","", DateTime.Now)
         {
         }
 
@@ -79,7 +91,8 @@ namespace Reminder2.Pages
                 Match match = Regex.Match(titleEntry.Text, @"^\\s+$", RegexOptions.None);
                 if (!match.Success && !titleEntry.Text.Equals(""))
                 {
-                    ReminderDataStructure r = new ReminderDataStructure(titleEntry.Text, descriptionEntry.Text);
+                    ReminderDataStructure r = new ReminderDataStructure(titleEntry.Text, descriptionEntry.Text, date.Date.Add(time.Time));
+                    HomePage.notificationManager.sendNotification(r);
                     HomePage.dataAccess.Reminders.Add(r);
                     await Navigation.PopModalAsync();
                 }

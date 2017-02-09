@@ -8,6 +8,8 @@ namespace Reminder2.Interfaces
 {
     public interface INotification
     {
-        void sendNotification(string message, Reminder2.Data.ReminderDataStructure r);
+        void sendNotification(Reminder2.Data.ReminderDataStructure r);
+        void updateNotification(Reminder2.Data.ReminderDataStructure r);
+        void deleteNotification(Reminder2.Data.ReminderDataStructure r);
     }
 }

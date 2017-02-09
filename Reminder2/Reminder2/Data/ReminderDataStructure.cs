@@ -13,13 +13,14 @@ namespace Reminder2.Data
     public class ReminderDataStructure : INotifyPropertyChanged
     {
 
-        public ReminderDataStructure(string title, string description)
+        public ReminderDataStructure(string title, string description, DateTime time)
         {
             Title = title;
             Description = description;
+            Time = time;
         }
 
-        public ReminderDataStructure() : this("", "") { }
+        public ReminderDataStructure() : this("", "", new DateTime(1,1,1)) { }
 
         private int _id;
         [PrimaryKey, AutoIncrement]
@@ -61,6 +62,20 @@ namespace Reminder2.Data
             {
                 _description = value;
                 OnPropertyChanged(nameof(Description));
+            }
+        }
+        private DateTime _time;
+        //[NotNull]
+        public DateTime Time
+        {
+            get
+            {
+                return _time;
+            }
+            set
+            {
+                _time = value;
+                OnPropertyChanged(nameof(Time));
             }
         }
 

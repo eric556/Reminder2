@@ -30,13 +30,14 @@ namespace Reminder2.Elements
             top.SetBinding(Label.TextProperty, "Title");
             bottom.SetBinding(Label.TextProperty, "Description");
 
-            MenuItem moreAction = new MenuItem { Text = "Edit" };
-            moreAction.SetBinding(MenuItem.CommandParameterProperty, new Binding("."));
-            moreAction.Clicked += async (sender, e) =>
+            MenuItem editAction = new MenuItem { Text = "Edit" };
+            editAction.SetBinding(MenuItem.CommandParameterProperty, new Binding("."));
+            editAction.Clicked += async (sender, e) =>
             {
-                var addPage = new ReminderCreationPage(top.Text,bottom.Text);
                 MenuItem mi = ((MenuItem)sender);
                 ReminderDataStructure r = ((ReminderDataStructure)mi.CommandParameter);
+                var addPage = new ReminderCreationPage(top.Text,bottom.Text,r.Time);
+                HomePage.notificationManager.deleteNotification(r);
                 HomePage.dataAccess.DeleteReminder(r);
                 await App.Current.MainPage.Navigation.PushModalAsync(addPage);
             };
@@ -47,9 +48,10 @@ namespace Reminder2.Elements
             {
                 MenuItem mi = ((MenuItem)sender);
                 ReminderDataStructure r = ((ReminderDataStructure)mi.CommandParameter);
+                HomePage.notificationManager.deleteNotification(r);
                 HomePage.dataAccess.DeleteReminder(r);
             };
-            ContextActions.Add(moreAction);
+            ContextActions.Add(editAction);
             ContextActions.Add(deleteAction);
 
             verticalLayout.Orientation = StackOrientation.Vertical;

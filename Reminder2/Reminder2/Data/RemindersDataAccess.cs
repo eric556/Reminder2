@@ -4,6 +4,7 @@ using System.Linq;
 using Xamarin.Forms;
 using System.Collections.ObjectModel;
 using Reminder2.Interfaces;
+using System;
 
 namespace Reminder2.Data
 {
@@ -20,7 +21,7 @@ namespace Reminder2.Data
             // If the table is empty, initialize the collection
             if (!database.Table<ReminderDataStructure>().Any())
             {
-                //AddNewReminder();
+                AddNewReminder();
             }
         }
         public void AddNewReminder()
@@ -28,8 +29,9 @@ namespace Reminder2.Data
             this.Reminders.
               Add(new ReminderDataStructure
               {
-                  Title = "Test",
-                  Description = "This is a test"
+                  Title = "Looks like you have no reminders",
+                  Description = "Add a new one now!",
+                  Time = DateTime.Now
               });
         }
         public ReminderDataStructure GetReminder(int id)

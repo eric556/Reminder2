@@ -17,9 +17,20 @@ namespace Reminder2.Notifications
             notificationInterface = DependencyService.Get<INotification>();
         }
 
-        public void sendNotification(string message, Reminder2.Data.ReminderDataStructure r)
+        public void updateNotification(Reminder2.Data.ReminderDataStructure r)
         {
-            notificationInterface.sendNotification(message, r);
+            notificationInterface.updateNotification(r);
+            sendNotification(r);
+        }
+
+        public void deleteNotification(Reminder2.Data.ReminderDataStructure r)
+        {
+            notificationInterface.deleteNotification(r);
+        }
+
+        public void sendNotification(Reminder2.Data.ReminderDataStructure r)
+        {
+            notificationInterface.sendNotification(r);
         }
     }
 }
